@@ -1,217 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FruityPop | Natural. Crispy. Delicious.</title>
-  <meta name="description" content="FruityPop - premium dehydrated fruit snacks made from real fruit.">
-  <style>
-    :root{
-      --green:#285943; --lime:#a8c957; --cream:#fffaf0; --orange:#f28c28;
-      --dark:#173126; --muted:#66736c; --white:#fff;
-      --shadow:0 18px 50px rgba(40,89,67,.12);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--dark);background:var(--cream);line-height:1.6}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(1120px,92%);margin:auto}
-    nav{position:sticky;top:0;z-index:20;background:rgba(255,250,240,.94);backdrop-filter:blur(14px);border-bottom:1px solid #eadfca}
-    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:10px;font-size:1.45rem;font-weight:900;letter-spacing:-.5px}
-    .logo-mark{width:40px;height:40px;border-radius:50% 45% 55% 50%;background:linear-gradient(135deg,var(--lime),var(--orange));display:grid;place-items:center;color:white;font-size:20px;transform:rotate(-12deg)}
-    .nav-links{display:flex;gap:28px;font-weight:700;font-size:.94rem}
-    .nav-links a:hover{color:var(--orange)}
-    .menu{display:none;background:none;border:0;font-size:26px}
-    .hero{padding:78px 0 70px;overflow:hidden}
-    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:55px;align-items:center}
-    .eyebrow{display:inline-block;background:#e9f2df;color:var(--green);padding:8px 14px;border-radius:999px;font-weight:800;font-size:.82rem;margin-bottom:18px}
-    h1{font-size:clamp(3rem,6vw,5.4rem);line-height:.98;letter-spacing:-4px;margin-bottom:22px}
-    h1 span{color:var(--orange)}
-    .hero p{font-size:1.1rem;color:var(--muted);max-width:570px;margin-bottom:30px}
-    .buttons{display:flex;gap:13px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:14px;font-weight:900;border:2px solid transparent;cursor:pointer}
-    .btn-primary{background:var(--green);color:white}
-    .btn-primary:hover{background:#1d4735}
-    .btn-secondary{border-color:#d8cdb8;background:transparent}
-    .hero-art{min-height:430px;border-radius:42px;background:linear-gradient(145deg,#dfecc6,#fff0cc);position:relative;display:grid;place-items:center;box-shadow:var(--shadow)}
-    .fruit-ring{width:280px;height:280px;border-radius:50%;border:34px dashed #f3a54d;box-shadow:0 0 0 18px rgba(168,201,87,.22);display:grid;place-items:center;transform:rotate(12deg)}
-    .fruit-ring span{font-size:7rem;transform:rotate(-12deg)}
-    .float{position:absolute;background:white;border-radius:18px;padding:12px 15px;box-shadow:0 10px 30px rgba(0,0,0,.1);font-weight:800}
-    .float.one{top:30px;left:24px}.float.two{bottom:32px;right:24px}.float.three{top:105px;right:18px}
-    section{padding:82px 0}
-    .section-head{text-align:center;max-width:680px;margin:0 auto 42px}
-    .section-head h2{font-size:2.45rem;letter-spacing:-1.5px;margin-bottom:10px}
-    .section-head p{color:var(--muted)}
-    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .card{background:white;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid #eee5d5}
-    .product-img{height:230px;border-radius:18px;background:linear-gradient(145deg,#f7e5b5,#dbe9bd);display:grid;place-items:center;font-size:6rem}
-    .card h3{font-size:1.35rem;margin:17px 3px 5px}
-    .card p{color:var(--muted);font-size:.92rem;margin:0 3px 15px}
-    .price-row{display:flex;justify-content:space-between;align-items:center;margin:0 3px}
-    .price{font-size:1.25rem;font-weight:900;color:var(--green)}
-    .small-btn{padding:10px 14px;border-radius:11px;background:var(--orange);color:white;font-weight:900;border:0;cursor:pointer}
-    .features{background:#eff5e7}
-    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .feature{background:white;border-radius:20px;padding:24px;text-align:center}
-    .feature .icon{font-size:2rem;margin-bottom:8px}.feature h3{margin-bottom:5px}.feature p{font-size:.88rem;color:var(--muted)}
-    .order-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:30px;align-items:start}
-    .order-info{background:var(--green);color:white;border-radius:28px;padding:36px}
-    .order-info h2{font-size:2.3rem;line-height:1.1;margin-bottom:15px}
-    .order-info p{color:#dce9e1;margin-bottom:24px}
-    .order-info li{list-style:none;margin:13px 0}
-    form{background:white;border-radius:28px;padding:30px;box-shadow:var(--shadow)}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-    label{font-weight:800;font-size:.85rem}.field{margin-bottom:15px}
-    input,select,textarea{width:100%;margin-top:7px;border:1px solid #ddd4c5;border-radius:12px;padding:13px;font:inherit;background:#fffdf8}
-    textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}
-    footer{background:#173126;color:white;padding:45px 0 25px}
-    .footer-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-    footer p{color:#c9d8cf}.social{display:flex;gap:15px;margin-top:12px}
-    .copyright{border-top:1px solid #365345;margin-top:30px;padding-top:20px;font-size:.85rem;color:#a9bdb2}
-    .toast{position:fixed;right:20px;bottom:20px;background:#173126;color:white;padding:15px 18px;border-radius:13px;display:none;box-shadow:var(--shadow);z-index:50}
-    @media(max-width:850px){
-      .nav-links{display:none}.menu{display:block}
-      .hero-grid,.order-wrap{grid-template-columns:1fr}.hero{padding-top:45px}
-      .products{grid-template-columns:1fr 1fr}.feature-grid{grid-template-columns:1fr 1fr}
-    }
-    @media(max-width:560px){
-      h1{font-size:3.15rem;letter-spacing:-2.5px}.hero-art{min-height:330px}
-      .fruit-ring{width:210px;height:210px;border-width:25px}.fruit-ring span{font-size:5rem}
-      .products,.feature-grid,.form-grid{grid-template-columns:1fr}
-      .full{grid-column:auto}.section-head h2{font-size:2rem}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FruityPop | Natural. Crispy. Delicious.</title>
+<meta name="description" content="FruityPop dehydrated fruit snacks. Natural. Crispy. Delicious.">
+<style>
+:root{--g:#285943;--l:#a8c957;--o:#f28c28;--c:#fffaf0;--d:#173126;--m:#66736c;--r:#c94747}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--c);color:var(--d);line-height:1.6}
+a{text-decoration:none;color:inherit}.wrap{width:min(1160px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:20;background:#fffaf0f2;backdrop-filter:blur(12px);border-bottom:1px solid #eadfca}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}.logo{font-size:1.4rem;font-weight:900}.links{display:flex;gap:22px;font-weight:800}.links a:hover{color:var(--o)}
+.cart{border:0;background:var(--g);color:#fff;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}.count{background:#fff;color:var(--g);border-radius:99px;padding:1px 6px}
+.menu{display:none;border:0;background:none;font-size:25px}
+.hero{padding:75px 0}.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.tag{display:inline-block;background:#e9f2df;color:var(--g);padding:8px 14px;border-radius:99px;font-weight:900;font-size:.8rem}
+h1{font-size:clamp(3rem,6vw,5.2rem);line-height:1;letter-spacing:-4px;margin:18px 0}h1 span{color:var(--o)}.hero p{color:var(--m);font-size:1.1rem;max-width:570px}.btn{display:inline-block;border:0;border-radius:13px;padding:13px 20px;font-weight:900;cursor:pointer}.primary{background:var(--g);color:#fff}.secondary{border:2px solid #d8cdb8;margin-left:8px}
+.art{min-height:400px;border-radius:40px;background:linear-gradient(145deg,#dfecc6,#fff0cc);display:grid;place-items:center;position:relative;box-shadow:0 18px 50px #2859431f}.ring{width:260px;height:260px;border:30px dashed #f3a54d;border-radius:50%;display:grid;place-items:center}.ring span{font-size:6rem}.float{position:absolute;background:#fff;padding:10px 14px;border-radius:15px;box-shadow:0 8px 25px #0002;font-weight:900}.f1{top:25px;left:20px}.f2{bottom:25px;right:20px}.f3{top:95px;right:15px}
+section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35px}.head h2{font-size:2.4rem;margin:10px 0}.head p{color:var(--m)}
+.cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.cat{border:1px solid #ddd4c5;background:#fffaf0;padding:8px 13px;border-radius:99px;font-weight:800;cursor:pointer}.cat.active,.cat:hover{background:var(--g);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.box{background:#fff;border:1px solid #eee5d5;border-radius:22px;padding:18px;box-shadow:0 18px 50px #2859431a}.pic{height:210px;border-radius:17px;background:linear-gradient(145deg,#f7e5b5,#dbe9bd);display:grid;place-items:center;font-size:5.5rem}.card h3{margin:15px 2px 5px}.card p{color:var(--m);font-size:.9rem}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.price{color:var(--g);font-weight:900;font-size:1.15rem}.stock{font-size:.8rem;font-weight:900}.in{color:#27824c}.out{color:var(--r)}.sizes{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.size{border:1px solid #ddd4c5;background:#fffdf8;border-radius:8px;padding:6px 9px;font-weight:800;cursor:pointer}.size.sel{background:#eff5e7;border-color:var(--g);color:var(--g)}.add{width:100%;margin-top:8px;background:var(--o);color:#fff;border:0;border-radius:10px;padding:11px;font-weight:900;cursor:pointer}.add:disabled{background:#aaa;cursor:not-allowed}
+.features{background:#eff5e7}.featureGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.feature{text-align:center;background:#fff;padding:22px;border-radius:18px}.icon{font-size:2rem}.muted{color:var(--m)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}.pay{padding:15px;border:1px solid #e4dac9;border-radius:13px;margin-top:10px;background:#fffdf8}
+.order{display:grid;grid-template-columns:.85fr 1.15fr;gap:25px}.orderInfo{background:var(--g);color:#fff;border-radius:25px;padding:32px}.orderInfo li{list-style:none;margin:12px 0}form{padding:27px}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:12px}label{font-weight:800;font-size:.85rem}input,select,textarea{width:100%;margin-top:6px;padding:12px;border:1px solid #ddd4c5;border-radius:11px;background:#fffdf8;font:inherit}textarea{min-height:95px}.full{grid-column:1/-1}.total{display:flex;justify-content:space-between;background:#eff5e7;padding:13px;border-radius:12px;font-weight:900}
+.reviewGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.review{border:1px solid #eee5d5;border-radius:16px;padding:16px;margin-bottom:12px;background:#fff}.stars{color:#e7a92f;letter-spacing:2px}
+footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}footer p{color:#c9d8cf}.copy{border-top:1px solid #365345;margin-top:25px;padding-top:18px;color:#a9bdb2;font-size:.85rem}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalBox{background:#fff;border-radius:20px;padding:23px;max-width:520px;width:100%;max-height:88vh;overflow:auto}.close{float:right;border:0;border-radius:50%;padding:6px 10px;cursor:pointer}.cartLine{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:12px 0}.toast{position:fixed;right:20px;bottom:20px;background:var(--d);color:#fff;padding:13px 17px;border-radius:12px;display:none;z-index:60}
+@media(max-width:850px){.links{display:none}.menu{display:block}.heroGrid,.order,.two,.reviewGrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.featureGrid{grid-template-columns:1fr 1fr}.links.mobile{display:flex;position:absolute;top:72px;left:0;right:0;background:var(--c);padding:18px 4%;flex-direction:column;border-bottom:1px solid #eadfca}}
+@media(max-width:560px){.grid,.featureGrid,.formGrid{grid-template-columns:1fr}h1{font-size:3.15rem;letter-spacing:-2px}.hero{padding-top:45px}.ring{width:205px;height:205px;border-width:24px}.ring span{font-size:4.5rem}.full{grid-column:auto}}
+</style>
 </head>
 <body>
+<nav><div class="wrap nav"><a class="logo" href="#">🍊 FruityPop</a><div class="links" id="links"><a href="#products">Products</a><a href="#why">Why Us</a><a href="#payment">Payment</a><a href="#reviews">Reviews</a><a href="#order">Order</a><a href="#contact">Contact</a></div><div><button class="cart" onclick="openCart()">🛒 Cart <span class="count" id="count">0</span></button><button class="menu" onclick="links.classList.toggle('mobile')">☰</button></div></div></nav>
 
-<nav>
-  <div class="container nav-inner">
-    <a class="logo" href="#"><span class="logo-mark">🍊</span>FruityPop</a>
-    <div class="nav-links">
-      <a href="#products">Products</a><a href="#why">Why FruityPop?</a><a href="#order">Order</a><a href="#contact">Contact</a>
-    </div>
-    <button class="menu" onclick="document.querySelector('.nav-links').classList.toggle('mobile')">☰</button>
-  </div>
-</nav>
+<header class="hero"><div class="wrap heroGrid"><div><span class="tag">100% REAL FRUIT • CRISPY SNACK</span><h1>Fruit made <span>crispy.</span><br>Snack made better.</h1><p>Meet FruityPop — delicious dehydrated fruit snacks made for people who want a naturally tasty, convenient crunch.</p><a class="btn primary" href="#products">Shop Now →</a><a class="btn secondary" href="#order">Order Now</a></div><div class="art"><div class="float f1">🌱 Natural</div><div class="ring"><span>🍍</span></div><div class="float f2">✨ Crispy & Tasty</div><div class="float f3">🍓 Real Fruit</div></div></div></header>
 
-<header class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">100% REAL FRUIT • CRISPY SNACK</span>
-      <h1>Fruit made <span>crispy.</span><br>Snack made better.</h1>
-      <p>Meet FruityPop — delicious dehydrated fruit snacks made for people who want a naturally tasty, convenient crunch.</p>
-      <div class="buttons">
-        <a class="btn btn-primary" href="#order">Order Now →</a>
-        <a class="btn btn-secondary" href="#products">Explore Products</a>
-      </div>
-    </div>
-    <div class="hero-art">
-      <div class="float one">🌱 Natural</div>
-      <div class="fruit-ring"><span>🍍</span></div>
-      <div class="float two">✨ Crispy & Tasty</div>
-      <div class="float three">🍓 Real Fruit</div>
-    </div>
-  </div>
-</header>
+<section id="products"><div class="wrap"><div class="head"><span class="tag">OUR PRODUCTS</span><h2>Your favourite fruits. A whole new crunch.</h2><p>Select a fruit, pack size and add it to your cart.</p></div><div class="cats" id="cats"></div><div class="grid" id="productsGrid"></div></div></section>
 
-<section id="products">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">OUR PRODUCTS</span>
-      <h2>Your favourite fruits. A whole new crunch.</h2>
-      <p>Choose your pack size and enjoy FruityPop wherever you go.</p>
-    </div>
-    <div class="products">
-      <article class="card">
-        <div class="product-img">🍍</div>
-        <h3>FruityPop 50g</h3><p>Perfect for a quick snack or first taste.</p>
-        <div class="price-row"><span class="price">Rs. 450</span><button class="small-btn" onclick="chooseProduct('50g')">Add to Order</button></div>
-      </article>
-      <article class="card">
-        <div class="product-img">🍓</div>
-        <h3>FruityPop 100g</h3><p>Our everyday pack for fruit lovers.</p>
-        <div class="price-row"><span class="price">Rs. 800</span><button class="small-btn" onclick="chooseProduct('100g')">Add to Order</button></div>
-      </article>
-      <article class="card">
-        <div class="product-img">🥭</div>
-        <h3>FruityPop 400g</h3><p>Great for sharing, gifting and stocking up.</p>
-        <div class="price-row"><span class="price">Rs. 2,900</span><button class="small-btn" onclick="chooseProduct('400g')">Add to Order</button></div>
-      </article>
-    </div>
-  </div>
-</section>
+<section id="why" class="features"><div class="wrap"><div class="head"><span class="tag">WHY FRUITYPOP?</span><h2>Simple ingredients. Big flavour.</h2></div><div class="featureGrid"><div class="feature"><div class="icon">🍎</div><h3>Real Fruit</h3><p class="muted">Made from carefully selected fruit.</p></div><div class="feature"><div class="icon">🌿</div><h3>Natural</h3><p class="muted">A simple snack inspired by nature.</p></div><div class="feature"><div class="icon">✨</div><h3>Crispy</h3><p class="muted">Light, crunchy and satisfying.</p></div><div class="feature"><div class="icon">🎒</div><h3>Easy to Carry</h3><p class="muted">A convenient snack for every adventure.</p></div></div></div></section>
 
-<section id="why" class="features">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">WHY FRUITYPOP?</span>
-      <h2>Simple ingredients. Big flavour.</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature"><div class="icon">🍎</div><h3>Real Fruit</h3><p>Made from carefully selected fruit.</p></div>
-      <div class="feature"><div class="icon">🌿</div><h3>Natural</h3><p>A simple snack inspired by nature.</p></div>
-      <div class="feature"><div class="icon">✨</div><h3>Crispy</h3><p>Light, crunchy and satisfying.</p></div>
-      <div class="feature"><div class="icon">🎒</div><h3>Easy to Carry</h3><p>A convenient snack for every adventure.</p></div>
-    </div>
-  </div>
-</section>
+<section id="payment"><div class="wrap"><div class="head"><span class="tag">PAYMENT & DELIVERY</span><h2>Easy ways to order.</h2></div><div class="two"><div class="box"><h3>💳 Payment Methods</h3><div class="pay"><b>Cash on Delivery</b><br><span class="muted">Pay when your order is delivered.</span></div><div class="pay"><b>🏦 Bank Transfer</b><br><span class="muted">Bank details will be provided after confirmation.</span></div><div class="pay"><b>💻 Online Payment</b><br><span class="muted">Payment gateway can be connected in the next phase.</span></div></div><div class="box"><h3>🚚 Delivery</h3><p class="muted">Islandwide delivery can be arranged. Delivery charges depend on location and order. Final delivery details are confirmed through WhatsApp.</p></div></div></div></section>
 
-<section id="order">
-  <div class="container order-wrap">
-    <div class="order-info">
-      <span class="eyebrow" style="background:#3b7057;color:white">ORDER FRUITYPOP</span>
-      <h2>Ready for your first crunch?</h2>
-      <p>Fill in your details. We'll receive your order request through WhatsApp.</p>
-      <ul>
-        <li>✓ Select your pack size</li>
-        <li>✓ Add your delivery details</li>
-        <li>✓ Confirm your order on WhatsApp</li>
-      </ul>
-    </div>
-    <form onsubmit="sendOrder(event)">
-      <div class="form-grid">
-        <div class="field"><label>Your Name<input id="name" required placeholder="Enter your name"></label></div>
-        <div class="field"><label>Phone Number<input id="phone" required placeholder="07X XXX XXXX"></label></div>
-        <div class="field"><label>Pack Size<select id="product"><option>50g</option><option>100g</option><option>400g</option></select></label></div>
-        <div class="field"><label>Quantity<input id="qty" type="number" min="1" value="1" required></label></div>
-        <div class="field full"><label>Delivery Address<textarea id="address" required placeholder="Enter your delivery address"></textarea></label></div>
-        <div class="field full"><button class="btn btn-primary" style="width:100%" type="submit">Order via WhatsApp 📲</button></div>
-      </div>
-    </form>
-  </div>
-</section>
+<section id="reviews"><div class="wrap"><div class="head"><span class="tag">CUSTOMER FEEDBACK</span><h2>What our customers say.</h2><p>Customers can submit feedback. This first version stores reviews in the visitor's browser; a database can be connected later.</p></div><div class="reviewGrid"><div id="reviewList"></div><form class="box" onsubmit="review(event)"><h3>Leave a Review ⭐</h3><div class="field"><label>Name<input id="rName" required></label></div><div class="field"><label>Rating<select id="rRating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select></label></div><div class="field"><label>Product<input id="rProduct" placeholder="e.g. Crunchy Mango"></label></div><div class="field"><label>Feedback<textarea id="rText" required></textarea></label></div><button class="btn primary" style="width:100%">Submit Feedback</button></form></div></div></section>
 
-<footer id="contact">
-  <div class="container">
-    <div class="footer-grid">
-      <div><div class="logo"><span class="logo-mark">🍊</span>FruityPop</div><p style="margin-top:10px">Natural. Crispy. Delicious.</p></div>
-      <div><strong>Contact</strong><p>WhatsApp: +9477 759 8013</p><p>Email:fruitypop.lk@gmail.com</p><div class="social"><a href="#" aria-label="Facebook">Facebook</a><a href="#" aria-label="Instagram">Instagram</a></div></div>
-    </div>
-    <div class="copyright">© 2026 FruityPop. All rights reserved.</div>
-  </div>
-</footer>
+<section id="order"><div class="wrap order"><div class="orderInfo"><span class="tag">ORDER FRUITYPOP</span><h2>Ready for your first crunch?</h2><p>Add products to your cart or place a quick order below.</p><ul><li>✓ Choose fruit and pack size</li><li>✓ Add quantity</li><li>✓ Enter delivery details</li><li>✓ Choose payment method</li><li>✓ Confirm through WhatsApp</li></ul></div><form class="box" onsubmit="sendOrder(event)"><div class="formGrid"><div class="field"><label>Name<input id="name" required></label></div><div class="field"><label>Phone<input id="phone" required placeholder="07X XXX XXXX"></label></div><div class="field"><label>Product<select id="product"></select></label></div><div class="field"><label>Pack Size<select id="size"><option value="50">50g</option><option value="100">100g</option><option value="400">400g</option></select></label></div><div class="field"><label>Quantity<input id="qty" type="number" min="1" value="1" required></label></div><div class="field"><label>Payment<select id="payMethod"><option>Cash on Delivery</option><option>Bank Transfer</option><option>Online Payment</option></select></label></div><div class="field full"><label>Delivery Address<textarea id="address" required></textarea></label></div><div class="field full"><div class="total"><span>Estimated Total</span><span id="total">Rs. 0</span></div></div><div class="field full"><button class="btn primary" style="width:100%">Order via WhatsApp 📲</button></div></div></form></div></section>
 
-<div class="toast" id="toast">Added to your order ✓</div>
+<footer id="contact"><div class="wrap"><div class="foot"><div><div class="logo">🍊 FruityPop</div><p>Natural. Crispy. Delicious.</p></div><div><b>Contact</b><p>WhatsApp: <a href="https://wa.me/94777598013">+94 77 759 8013</a></p><p>Phone: <a href="tel:+94757798013">+94 75 779 8013</a></p><p>Email: <a href="mailto:fruitypop.lk@gmail.com">fruitypop.lk@gmail.com</a></p><p><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">TikTok</a></p></div></div><div class="copy">© 2026 FruityPop. All rights reserved.</div></div></footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="modalBox"><button class="close" onclick="closeCart()">×</button><h2>Your Cart 🛒</h2><div id="cartItems"></div><div class="total"><span>Total</span><span id="cartTotal">Rs. 0</span></div><br><button class="btn primary" style="width:100%" onclick="closeCart();document.getElementById('order').scrollIntoView({behavior:'smooth'})">Proceed to Order →</button></div></div>
+<div class="toast" id="toast"></div>
 
 <script>
-  function chooseProduct(size){
-    document.getElementById('product').value=size;
-    document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    const t=document.getElementById('toast'); t.style.display='block';
-    setTimeout(()=>t.style.display='none',1800);
-  }
-  function sendOrder(e){
-    e.preventDefault();
-    const name=document.getElementById('name').value;
-    const phone=document.getElementById('phone').value;
-    const product=document.getElementById('product').value;
-    const qty=document.getElementById('qty').value;
-    const address=document.getElementById('address').value;
-    const whatsappNumber='94777598013'; // CHANGE THIS TO YOUR WHATSAPP NUMBER
-    const text=`Hello FruityPop!%0A%0AI would like to place an order.%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AProduct: ${encodeURIComponent(product)}%0AQuantity: ${encodeURIComponent(qty)}%0AAddress: ${encodeURIComponent(address)}`;
-    window.open(`https://wa.me/${whatsappNumber}?text=${text}`,'_blank');
-  }
+const products=[
+{name:"Crunchy Papaya",emoji:"🍊",stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
+{name:"Crunchy Watermelon",emoji:"🍉",stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
+{name:"Crunchy Mango",emoji:"🥭",stock:true,p:{50:450,100:800,400:2900},d:"A tropical favourite with a satisfying crunch."},
+{name:"Crunchy Banana",emoji:"🍌",stock:true,p:{50:450,100:800,400:2900},d:"Naturally sweet and crunchy."},
+{name:"Crunchy Lime",emoji:"🍋",stock:true,p:{50:450,100:800,400:2900},d:"Zesty, fresh and crispy."},
+{name:"Crunchy Orange",emoji:"🍊",stock:true,p:{50:450,100:800,400:2900},d:"Citrusy flavour in a crispy snack."},
+{name:"Crunchy Strawberry",emoji:"🍓",stock:true,p:{50:450,100:800,400:2900},d:"A fruity, crispy treat."},
+{name:"Crunchy Mix",emoji:"🍓",stock:true,p:{50:500,100:900,400:3200},d:"A mix of favourite fruity crunches."}
+];
+let filter="All",cart=JSON.parse(localStorage.getItem("fpCart")||"[]");
+const money=n=>"Rs. "+Number(n).toLocaleString("en-LK");
+function render(){cats.innerHTML=["All",...products.map(x=>x.name)].map(x=>`<button class="cat ${x===filter?"active":""}" onclick="filterBy('${x}')">${x}</button>`).join("");let list=filter==="All"?products:products.filter(x=>x.name===filter);productsGrid.innerHTML=list.map((p,i)=>`<article class="card"><div class="pic">${p.emoji}</div><div class="row"><h3>${p.name}</h3><span class="stock ${p.stock?"in":"out"}">${p.stock?"🟢 In Stock":"🔴 Out of Stock"}</span></div><p>${p.d}</p><div class="sizes">${[50,100,400].map((s,j)=>`<button class="size ${j===0?"sel":""}" onclick="pickSize(this,'${p.name}',${s})">${s}g</button>`).join("")}</div><div class="row"><span class="price" id="price${i}">${money(p.p[50])}</span></div><button class="add" ${p.stock?"":"disabled"} onclick="add('${p.name}',50,this)">Add to Cart</button></article>`).join("");updateOrder();updateCart()}
+function filterBy(x){filter=x;render()}
+function pickSize(btn,name,s){btn.parentElement.querySelectorAll(".size").forEach(x=>x.classList.remove("sel"));btn.classList.add("sel");let card=btn.closest(".card"),p=products.find(x=>x.name===name);card.querySelector(".price").textContent=money(p.p[s]);card.querySelector(".add").onclick=()=>add(name,s,card.querySelector(".add"))}
+function add(name,s){let p=products.find(x=>x.name===name);if(!p||!p.stock)return;let x=cart.find(x=>x.name===name&&x.s===s);x?x.q++:cart.push({name,s,q:1,price:p.p[s]});save();toast("Added to your cart ✓")}
+function save(){localStorage.setItem("fpCart",JSON.stringify(cart));updateCart()}
+function updateCart(){count.textContent=cart.reduce((a,x)=>a+x.q,0);cartTotal.textContent=money(cart.reduce((a,x)=>a+x.price*x.q,0));cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cartLine"><span><b>${x.name}</b><br>${x.s}g × ${x.q}</span><span>${money(x.price*x.q)}<br><button onclick="chg(${i},-1)">−</button> <button onclick="chg(${i},1)">+</button></span></div>`).join(""):"<p class='muted'>Your cart is empty.</p>"}
+function chg(i,d){cart[i].q+=d;if(cart[i].q<=0)cart.splice(i,1);save()}
+function openCart(){modal.classList.add("open");updateCart()}function closeCart(){modal.classList.remove("open")}
+function updateOrder(){product.innerHTML=products.map(p=>`<option>${p.name}</option>`).join("");calc()}
+function calc(){let p=products.find(x=>x.name===product.value),s=Number(size.value),q=Number(qty.value)||1;total.textContent=p?money(p.p[s]*q):"Rs. 0"}
+product.onchange=calc;size.onchange=calc;qty.oninput=calc;
+function sendOrder(e){e.preventDefault();let p=products.find(x=>x.name===product.value),s=Number(size.value),q=Number(qty.value),t=p.p[s]*q;let msg=`Hello FruityPop!%0A%0AOrder%0AName: ${encodeURIComponent(name.value)}%0APhone: ${encodeURIComponent(phone.value)}%0AProduct: ${encodeURIComponent(product.value)}%0APack: ${s}g%0AQuantity: ${q}%0ATotal: ${encodeURIComponent(money(t))}%0APayment: ${encodeURIComponent(payMethod.value)}%0AAddress: ${encodeURIComponent(address.value)}`;window.open("https://wa.me/94777598013?text="+msg,"_blank")}
+function toast(t){toastEl.textContent=t;toastEl.style.display="block";setTimeout(()=>toastEl.style.display="none",1700)}
+const toastEl=document.getElementById("toast");
+function reviews(){return JSON.parse(localStorage.getItem("fpReviews")||"[]")}
+function renderReviews(){let r=reviews();reviewList.innerHTML=(r.length?r:[{name:"Happy Customer",rating:5,product:"FruityPop",text:"Fresh, crispy and delicious!"},{name:"Fruit Lover",rating:5,product:"Crunchy Mango",text:"Great snack for travelling."}]).map(x=>`<div class="review"><div class="stars">${"★".repeat(x.rating)}${"☆".repeat(5-x.rating)}</div><b>${x.name}</b><br><small>${x.product||"FruityPop"}</small><p>${x.text}</p></div>`).join("")}
+function review(e){e.preventDefault();let r=reviews();r.unshift({name:rName.value,rating:Number(rRating.value),product:rProduct.value,text:rText.value});localStorage.setItem("fpReviews",JSON.stringify(r));e.target.reset();renderReviews();toast("Thank you for your feedback ⭐")}
+render();renderReviews();
 </script>
-</body>
-</html>
+</body></html>
