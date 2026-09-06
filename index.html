@@ -21,7 +21,17 @@ nav{position:sticky;top:0;z-index:20;background:#fffaf0f2;backdrop-filter:blur(1
 .menu{display:none;border:0;background:none;font-size:25px}
 .hero{padding:75px 0}.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.tag{display:inline-block;background:#e9f2df;color:var(--g);padding:8px 14px;border-radius:99px;font-weight:900;font-size:.8rem}
 h1{font-size:clamp(3rem,6vw,5.2rem);line-height:1;letter-spacing:-4px;margin:18px 0}h1 span{color:var(--o)}.hero p{color:var(--m);font-size:1.1rem;max-width:570px}.btn{display:inline-block;border:0;border-radius:13px;padding:13px 20px;font-weight:900;cursor:pointer}.primary{background:var(--g);color:#fff}.secondary{border:2px solid #d8cdb8;margin-left:8px}
-.art{min-height:400px;border-radius:40px;background:linear-gradient(145deg,#dfecc6,#fff0cc);display:grid;place-items:center;position:relative;box-shadow:0 18px 50px #2859431f}.ring{width:260px;height:260px;border:30px dashed #f3a54d;border-radius:50%;display:grid;place-items:center}.ring span{font-size:6rem}.float{position:absolute;background:#fff;padding:10px 14px;border-radius:15px;box-shadow:0 8px 25px #0002;font-weight:900}.f1{top:25px;left:20px}.f2{bottom:25px;right:20px}.f3{top:95px;right:15px}
+
+/* HERO IMAGE STYLING */
+.art{min-height:400px;border-radius:40px;background:linear-gradient(145deg,#dfecc6,#fff0cc);display:grid;place-items:center;position:relative;box-shadow:0 18px 50px #2859431f;overflow:hidden;}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  padding: 15px;
+}
+
 section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35px}.head h2{font-size:2.4rem;margin:10px 0}.head p{color:var(--m)}
 .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.cat{border:1px solid #ddd4c5;background:#fffaf0;padding:8px 13px;border-radius:99px;font-weight:800;cursor:pointer}.cat.active,.cat:hover{background:var(--g);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.box{background:#fff;border:1px solid #eee5d5;border-radius:22px;padding:18px;box-shadow:0 18px 50px #2859431a}
@@ -57,13 +67,26 @@ section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35p
 footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}footer p{color:#c9d8cf}.copy{border-top:1px solid #365345;margin-top:25px;padding-top:18px;color:#a9bdb2;font-size:.85rem}
 .modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalBox{background:#fff;border-radius:20px;padding:23px;max-width:520px;width:100%;max-height:88vh;overflow:auto}.close{float:right;border:0;border-radius:50%;padding:6px 10px;cursor:pointer}.cartLine{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:12px 0}.toast{position:fixed;right:20px;bottom:20px;background:var(--d);color:#fff;padding:13px 17px;border-radius:12px;display:none;z-index:60}
 @media(max-width:850px){.links{display:none}.menu{display:block}.heroGrid,.order,.two,.reviewGrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.featureGrid{grid-template-columns:1fr 1fr}.links.mobile{display:flex;position:absolute;top:72px;left:0;right:0;background:var(--c);padding:18px 4%;flex-direction:column;border-bottom:1px solid #eadfca}}
-@media(max-width:560px){.grid,.featureGrid,.formGrid{grid-template-columns:1fr}h1{font-size:3.15rem;letter-spacing:-2px}.hero{padding-top:45px}.ring{width:205px;height:205px;border-width:24px}.ring span{font-size:4.5rem}.full{grid-column:auto}}
+@media(max-width:560px){.grid,.featureGrid,.formGrid{grid-template-columns:1fr}h1{font-size:3.15rem;letter-spacing:-2px}.hero{padding-top:45px}.full{grid-column:auto}}
 </style>
 </head>
 <body>
 <nav><div class="wrap nav"><a class="logo" href="#"><img src="images/logo.png" alt="FruityPop Logo"></a><div class="links" id="links"><a href="#products">Products</a><a href="#why">Why Us</a><a href="#payment">Payment</a><a href="#reviews">Reviews</a><a href="#order">Order</a><a href="#contact">Contact</a></div><div><button class="cart" onclick="openCart()">🛒 Cart <span class="count" id="count">0</span></button><button class="menu" onclick="links.classList.toggle('mobile')">☰</button></div></div></nav>
 
-<header class="hero"><div class="wrap heroGrid"><div><span class="tag">100% REAL FRUIT • REAL CRUNCH</span><h1>Fruit made <span>crispy.</span><br>Snack made better.</h1><p>Meet FruityPop — delicious dehydrated fruit snacks made for people who want a naturally tasty, convenient crunch.</p><a class="btn primary" href="#products">Shop Now →</a><a class="btn secondary" href="#order">Order Now</a></div><div class="art"><div class="float f1">🌱 Natural</div><div class="ring"><span>🍍</span></div><div class="float f2">✨ Crispy & Tasty</div><div class="float f3">🍓 Real Fruit</div></div></div></header>
+<header class="hero">
+  <div class="wrap heroGrid">
+    <div>
+      <span class="tag">100% REAL FRUIT • REAL CRUNCH</span>
+      <h1>Fruit made <span>crispy.</span><br>Snack made better.</h1>
+      <p>Meet FruityPop — delicious dehydrated fruit snacks made for people who want a naturally tasty, convenient crunch.</p>
+      <a class="btn primary" href="#products">Shop Now →</a>
+      <a class="btn secondary" href="#order">Order Now</a>
+    </div>
+    <div class="art">
+      <img src="images/product.jpg" alt="FruityPop Product Range" class="hero-img">
+    </div>
+  </div>
+</header>
 
 <section id="products"><div class="wrap"><div class="head"><span class="tag">OUR PRODUCTS</span><h2>Your favourite fruits. A whole new crunch.</h2><p>Select a fruit, pack size and add it to your cart.</p></div><div class="cats" id="cats"></div><div class="grid" id="productsGrid"></div></div></section>
 
