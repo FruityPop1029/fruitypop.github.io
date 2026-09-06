@@ -10,7 +10,13 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--c);color:var(--d);line-height:1.6}
 a{text-decoration:none;color:inherit}.wrap{width:min(1160px,92%);margin:auto}
 nav{position:sticky;top:0;z-index:20;background:#fffaf0f2;backdrop-filter:blur(12px);border-bottom:1px solid #eadfca}
-.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}.logo{font-size:1.4rem;font-weight:900}.links{display:flex;gap:22px;font-weight:800}.links a:hover{color:var(--o)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+
+/* LOGO STYLING */
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:48px;width:auto;display:block;object-fit:contain;border-radius:8px}
+
+.links{display:flex;gap:22px;font-weight:800}.links a:hover{color:var(--o)}
 .cart{border:0;background:var(--g);color:#fff;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}.count{background:#fff;color:var(--g);border-radius:99px;padding:1px 6px}
 .menu{display:none;border:0;background:none;font-size:25px}
 .hero{padding:75px 0}.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.tag{display:inline-block;background:#e9f2df;color:var(--g);padding:8px 14px;border-radius:99px;font-weight:900;font-size:.8rem}
@@ -20,12 +26,10 @@ section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35p
 .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.cat{border:1px solid #ddd4c5;background:#fffaf0;padding:8px 13px;border-radius:99px;font-weight:800;cursor:pointer}.cat.active,.cat:hover{background:var(--g);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.box{background:#fff;border:1px solid #eee5d5;border-radius:22px;padding:18px;box-shadow:0 18px 50px #2859431a}
 
-/* ======================================================== */
-/* FIXED IMAGE CROP ISSUE HERE */
-/* ======================================================== */
+/* PRODUCT IMAGE FIX */
 .pic {
   width: 100%;
-  aspect-ratio: 1 / 1; /* කොටුව 1:1 Square එකක් ලෙස පවත්වා ගනී */
+  aspect-ratio: 1 / 1;
   max-height: 280px;
   border-radius: 17px;
   background: #fbf8f1;
@@ -40,7 +44,7 @@ section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35p
   display: block;
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important; /* Image එක කැපෙන්නේ නැතිව full එකම පෙන්වීමට */
+  object-fit: contain !important;
   object-position: center;
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
 }
@@ -57,7 +61,7 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 </style>
 </head>
 <body>
-<nav><div class="wrap nav"><a class="logo" href="#">🍊 FruityPop</a><div class="links" id="links"><a href="#products">Products</a><a href="#why">Why Us</a><a href="#payment">Payment</a><a href="#reviews">Reviews</a><a href="#order">Order</a><a href="#contact">Contact</a></div><div><button class="cart" onclick="openCart()">🛒 Cart <span class="count" id="count">0</span></button><button class="menu" onclick="links.classList.toggle('mobile')">☰</button></div></div></nav>
+<nav><div class="wrap nav"><a class="logo" href="#"><img src="images/logo.jpg" alt="FruityPop Logo"></a><div class="links" id="links"><a href="#products">Products</a><a href="#why">Why Us</a><a href="#payment">Payment</a><a href="#reviews">Reviews</a><a href="#order">Order</a><a href="#contact">Contact</a></div><div><button class="cart" onclick="openCart()">🛒 Cart <span class="count" id="count">0</span></button><button class="menu" onclick="links.classList.toggle('mobile')">☰</button></div></div></nav>
 
 <header class="hero"><div class="wrap heroGrid"><div><span class="tag">100% REAL FRUIT • CRISPY SNACK</span><h1>Fruit made <span>crispy.</span><br>Snack made better.</h1><p>Meet FruityPop — delicious dehydrated fruit snacks made for people who want a naturally tasty, convenient crunch.</p><a class="btn primary" href="#products">Shop Now →</a><a class="btn secondary" href="#order">Order Now</a></div><div class="art"><div class="float f1">🌱 Natural</div><div class="ring"><span>🍍</span></div><div class="float f2">✨ Crispy & Tasty</div><div class="float f3">🍓 Real Fruit</div></div></div></header>
 
@@ -71,7 +75,7 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 
 <section id="order"><div class="wrap order"><div class="orderInfo"><span class="tag">ORDER FRUITYPOP</span><h2>Ready for your first crunch?</h2><p>Your cart items will be carried directly into this order. You can review everything before sending the order.</p><ul><li>✓ Review all cart products</li><li>✓ Enter delivery details</li><li>✓ Choose payment method</li><li>✓ See your final total</li><li>✓ Confirm through WhatsApp</li></ul></div><form class="box" onsubmit="sendOrder(event)"><h3>🛒 Order Summary</h3><div id="checkoutSummary" class="pay" style="margin-bottom:18px"></div><div id="quickOrderFields" class="formGrid"><div class="field"><label>Name<input id="name" required></label></div><div class="field"><label>Phone<input id="phone" required placeholder="07X XXX XXXX"></label></div><div class="field quickOnly"><label>Product<select id="product"></select></label></div><div class="field quickOnly"><label>Pack Size<select id="size"><option value="50">50g</option><option value="100">100g</option><option value="400">400g</option></select></label></div><div class="field quickOnly"><label>Quantity<input id="qty" type="number" min="1" value="1"></label></div><div class="field"><label>Payment<select id="payMethod"><option>Cash on Delivery</option><option>Bank Transfer</option><option>Online Payment</option></select></label></div><div class="field full"><label>Delivery Address<textarea id="address" required></textarea></label></div><div class="field full"><div class="total"><span>Order Total</span><span id="total">Rs. 0</span></div></div><div class="field full"><button class="btn primary" style="width:100%">Place Order via WhatsApp 📲</button></div></div></form></div></section>
 
-<footer id="contact"><div class="wrap"><div class="foot"><div><div class="logo">🍊 FruityPop</div><p>Natural. Crispy. Delicious.</p></div><div><b>Contact</b><p>WhatsApp: <a href="https://wa.me/94777598013">+94 77 759 8013</a></p><p>Phone: <a href="tel:+94757798013">+94 75 779 8013</a></p><p>Email: <a href="mailto:fruitypop.lk@gmail.com">fruitypop.lk@gmail.com</a></p><p><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">TikTok</a></p></div></div><div class="copy">© 2026 FruityPop. All rights reserved.</div></div></footer>
+<footer id="contact"><div class="wrap"><div class="foot"><div><div class="logo"><img src="images/logo.jpg" alt="FruityPop Logo"></div><p>Natural. Crispy. Delicious.</p></div><div><b>Contact</b><p>WhatsApp: <a href="https://wa.me/94777598013">+94 77 759 8013</a></p><p>Phone: <a href="tel:+94757798013">+94 75 779 8013</a></p><p>Email: <a href="mailto:fruitypop.lk@gmail.com">fruitypop.lk@gmail.com</a></p><p><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">TikTok</a></p></div></div><div class="copy">© 2026 FruityPop. All rights reserved.</div></div></footer>
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="modalBox"><button class="close" onclick="closeCart()">×</button><h2>Your Cart 🛒</h2><div id="cartItems"></div><div class="total"><span>Total</span><span id="cartTotal">Rs. 0</span></div><br><button class="btn primary" style="width:100%" onclick="proceedToOrder()">Proceed to Order →</button></div></div>
 <div class="toast" id="toast"></div>
