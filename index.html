@@ -51,14 +51,14 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 
 <script>
 const products=[
-{name:"Crunchy Papaya",emoji:"🍊",stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
-{name:"Crunchy Watermelon",emoji:"🍉",stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
-{name:"Crunchy Mango",emoji:"🥭",stock:true,p:{50:450,100:800,400:2900},d:"A tropical favourite with a satisfying crunch."},
-{name:"Crunchy Banana",emoji:"🍌",stock:true,p:{50:450,100:800,400:2900},d:"Naturally sweet and crunchy."},
-{name:"Crunchy Lime",emoji:"🍋",stock:true,p:{50:450,100:800,400:2900},d:"Zesty, fresh and crispy."},
-{name:"Crunchy Orange",emoji:"🍊",stock:true,p:{50:450,100:800,400:2900},d:"Citrusy flavour in a crispy snack."},
-{name:"Crunchy Strawberry",emoji:"🍓",stock:true,p:{50:450,100:800,400:2900},d:"A fruity, crispy treat."},
-{name:"Crunchy Mix",emoji:"🍓",stock:true,p:{50:500,100:900,400:3200},d:"A mix of favourite fruity crunches."}
+{name:"Crunchy Papaya",emoji:'<img src="images/papaya.jpg" alt="Crunchy Papaya">,stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
+{name:"Crunchy Watermelon",emoji:'<img src="images/watermelon.jpg" alt="Crunchy Watermelon">,stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
+{name:"Crunchy Mango",emoji:emoji:'<img src="images/mango.jpg" alt="Crunchy Mango">',stock:true,p:{50:450,100:800,400:2900},d:"A tropical favourite with a satisfying crunch."},
+{name:"Crunchy Banana",emoji:'<img src="images/banana.jpg" alt="Crunchy Banana">,stock:true,p:{50:450,100:800,400:2900},d:"Naturally sweet and crunchy."},
+{name:"Crunchy Lime",emoji:'<img src="images/lime.jpg" alt="Crunchy Lime">,stock:true,p:{50:450,100:800,400:2900},d:"Zesty, fresh and crispy."},
+{name:"Crunchy Orange",emoji:'<img src="images/orange.jpg" alt="Crunchy Orange">,stock:true,p:{50:450,100:800,400:2900},d:"Citrusy flavour in a crispy snack."},
+{name:"Crunchy Strawberry",emoji:'<img src="images/strawberry.jpg" alt="Crunchy Strawberry">,stock:true,p:{50:450,100:800,400:2900},d:"A fruity, crispy treat."},
+{name:"Crunchy Mix",emoji:'<img src="images/mix.jpg" alt="Crunchy Mix">,stock:true,p:{50:500,100:900,400:3200},d:"A mix of favourite fruity crunches."}
 ];
 let filter="All",cart=JSON.parse(localStorage.getItem("fpCart")||"[]");
 const money=n=>"Rs. "+Number(n).toLocaleString("en-LK");
