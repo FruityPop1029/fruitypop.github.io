@@ -20,24 +20,29 @@ section{padding:75px 0}.head{text-align:center;max-width:720px;margin:0 auto 35p
 .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.cat{border:1px solid #ddd4c5;background:#fffaf0;padding:8px 13px;border-radius:99px;font-weight:800;cursor:pointer}.cat.active,.cat:hover{background:var(--g);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.box{background:#fff;border:1px solid #eee5d5;border-radius:22px;padding:18px;box-shadow:0 18px 50px #2859431a}
 
-/* Image Card Container Fixes */
-.pic{
-  height:240px;
-  border-radius:17px;
-  background:#fbf8f1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px;
-  overflow:hidden;
+/* ======================================================== */
+/* FIXED IMAGE CROP ISSUE HERE */
+/* ======================================================== */
+.pic {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* කොටුව 1:1 Square එකක් ලෙස පවත්වා ගනී */
+  max-height: 280px;
+  border-radius: 17px;
+  background: #fbf8f1;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px;
+  box-sizing: border-box;
 }
-.pic img{
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain; /* Image එක නොකැපී සම්පූර්ණයෙන්ම පෙන්වීමට */
-  filter:drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+
+.pic img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* Image එක කැපෙන්නේ නැතිව full එකම පෙන්වීමට */
+  object-position: center;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
 }
 
 .card h3{margin:15px 2px 5px}.card p{color:var(--m);font-size:.9rem}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.price{color:var(--g);font-weight:900;font-size:1.15rem}.stock{font-size:.8rem;font-weight:900}.in{color:#27824c}.out{color:var(--r)}.sizes{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.size{border:1px solid #ddd4c5;background:#fffdf8;border-radius:8px;padding:6px 9px;font-weight:800;cursor:pointer}.size.sel{background:#eff5e7;border-color:var(--g);color:var(--g)}.add{width:100%;margin-top:8px;background:var(--o);color:#fff;border:0;border-radius:10px;padding:11px;font-weight:900;cursor:pointer}.add:disabled{background:#aaa;cursor:not-allowed}
@@ -62,7 +67,7 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 
 <section id="payment"><div class="wrap"><div class="head"><span class="tag">PAYMENT & DELIVERY</span><h2>Easy ways to order.</h2></div><div class="two"><div class="box"><h3>💳 Payment Methods</h3><div class="pay"><b>Cash on Delivery</b><br><span class="muted">Pay when your order is delivered.</span></div><div class="pay"><b>🏦 Bank Transfer</b><br><span class="muted">Bank details will be provided after confirmation.</span></div><div class="pay"><b>💻 Online Payment</b><br><span class="muted">Payment gateway can be connected in the next phase.</span></div></div><div class="box"><h3>🚚 Delivery</h3><p class="muted">Islandwide delivery can be arranged. Delivery charges depend on location and order. Final delivery details are confirmed through WhatsApp.</p></div></div></div></section>
 
-<section id="reviews"><div class="wrap"><div class="head"><span class="tag">CUSTOMER FEEDBACK</span><h2>What our customers say.</h2><p>Customers can submit feedback. This first version stores reviews in the visitor's browser; a database can be connected later.</p></div><div class="reviewGrid"><div id="reviewList"></div><form class="box" onsubmit="review(event)"><h3>Leave a Review ⭐</h3><div class="field"><label>Name<input id="rName" required></label></div><div class="field"><label>Rating<select id="rRating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select></label></div><div class="field"><label>Product<input id="rProduct" placeholder="e.g. Crunchy Mango"></label></div><div class="field"><label>Feedback<textarea id="rText" required></textarea></label></div><button class="btn primary" style="width:100%">Submit Feedback</button></form></div></div></section>
+<section id="reviews"><div class="wrap"><div class="head"><span class="tag">CUSTOMER FEEDBACK</span><h2>What our customers say.</h2></div><div class="reviewGrid"><div id="reviewList"></div><form class="box" onsubmit="review(event)"><h3>Leave a Review ⭐</h3><div class="field"><label>Name<input id="rName" required></label></div><div class="field"><label>Rating<select id="rRating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select></label></div><div class="field"><label>Product<input id="rProduct" placeholder="e.g. Crunchy Mango"></label></div><div class="field"><label>Feedback<textarea id="rText" required></textarea></label></div><button class="btn primary" style="width:100%">Submit Feedback</button></form></div></div></section>
 
 <section id="order"><div class="wrap order"><div class="orderInfo"><span class="tag">ORDER FRUITYPOP</span><h2>Ready for your first crunch?</h2><p>Your cart items will be carried directly into this order. You can review everything before sending the order.</p><ul><li>✓ Review all cart products</li><li>✓ Enter delivery details</li><li>✓ Choose payment method</li><li>✓ See your final total</li><li>✓ Confirm through WhatsApp</li></ul></div><form class="box" onsubmit="sendOrder(event)"><h3>🛒 Order Summary</h3><div id="checkoutSummary" class="pay" style="margin-bottom:18px"></div><div id="quickOrderFields" class="formGrid"><div class="field"><label>Name<input id="name" required></label></div><div class="field"><label>Phone<input id="phone" required placeholder="07X XXX XXXX"></label></div><div class="field quickOnly"><label>Product<select id="product"></select></label></div><div class="field quickOnly"><label>Pack Size<select id="size"><option value="50">50g</option><option value="100">100g</option><option value="400">400g</option></select></label></div><div class="field quickOnly"><label>Quantity<input id="qty" type="number" min="1" value="1"></label></div><div class="field"><label>Payment<select id="payMethod"><option>Cash on Delivery</option><option>Bank Transfer</option><option>Online Payment</option></select></label></div><div class="field full"><label>Delivery Address<textarea id="address" required></textarea></label></div><div class="field full"><div class="total"><span>Order Total</span><span id="total">Rs. 0</span></div></div><div class="field full"><button class="btn primary" style="width:100%">Place Order via WhatsApp 📲</button></div></div></form></div></section>
 
@@ -72,7 +77,6 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 <div class="toast" id="toast"></div>
 
 <script>
-// Products Data (With verified syntax and image tags)
 const products=[
   {name:"Crunchy Papaya",emoji:'<img src="images/papaya.jpg" alt="Crunchy Papaya">',stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
   {name:"Crunchy Watermelon",emoji:'<img src="images/watermelon.jpg" alt="Crunchy Watermelon">',stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
