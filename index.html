@@ -50,15 +50,15 @@ footer{background:var(--d);color:#fff;padding:42px 0 22px}.foot{display:flex;jus
 
 <script>
 const products=[
-{name:"Crunchy Papaya",image:"papaya.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
-{name:"Crunchy Watermelon",image:"watermelon.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
-{name:"Crunchy Mango",image:"mango.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"A tropical favourite with a satisfying crunch."},
-{name:"Crunchy Banana",image:"banana.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Naturally sweet and crunchy."},
-{name:"Crunchy Lime",image:"lime.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Zesty, fresh and crispy."},
-{name:"Crunchy Orange",image:"orange.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Citrusy flavour in a crispy snack."},
-{name:"Crunchy Strawberry",image:"strawberry.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"A fruity, crispy treat."},
-{name:"Crunchy Pineapple",image:"pineapple.jpg.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Sweet and tangy pineapple crunch."},
-{name:"Crunchy Mix",image:"mix.jpg.jpg",stock:true,p:{50:500,100:900,400:3200},d:"A mix of favourite fruity crunches."}
+{name:"Crunchy Papaya",image:"papaya.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Sweet, tropical and crispy."},
+{name:"Crunchy Watermelon",image:"watermelon.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Light, fruity and refreshing."},
+{name:"Crunchy Mango",image:"mango.jpg",stock:true,p:{50:450,100:800,400:2900},d:"A tropical favourite with a satisfying crunch."},
+{name:"Crunchy Banana",image:"banana.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Naturally sweet and crunchy."},
+{name:"Crunchy Lime",image:"lime.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Zesty, fresh and crispy."},
+{name:"Crunchy Orange",image:"orange.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Citrusy flavour in a crispy snack."},
+{name:"Crunchy Strawberry",image:"strawberry.jpg",stock:true,p:{50:450,100:800,400:2900},d:"A fruity, crispy treat."},
+{name:"Crunchy Pineapple",image:"pineapple.jpg",stock:true,p:{50:450,100:800,400:2900},d:"Sweet and tangy pineapple crunch."},
+{name:"Crunchy Mix",image:"mix.jpg",stock:true,p:{50:500,100:900,400:3200},d:"A mix of favourite fruity crunches."}
 ];
 let filter="All",cart=JSON.parse(localStorage.getItem("fpCart")||"[]");
 const money=n=>"Rs. "+Number(n).toLocaleString("en-LK");
